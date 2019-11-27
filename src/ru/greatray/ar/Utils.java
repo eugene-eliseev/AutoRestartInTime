@@ -1,5 +1,9 @@
 package ru.greatray.ar;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
+
 import java.util.Calendar;
 
 class Utils {
@@ -89,5 +93,24 @@ class Utils {
         }
 
         return cal.getTimeInMillis();
+    }
+
+    static void plingMinute(int number) {
+        playSound(1, 3, 1, 3, 1);
+        playSound(1, 3, 1, 3, 3);
+    }
+
+    static void plingSecond(int number) {
+        playSound(1, 1, 1, 1, 1);
+        playSound(1, 3, 1, 1, 3);
+    }
+
+    static private void playSound(float s1_volume, float s1_pitch, float s2_volume, float s2_pitch, long delay) {
+        for (final Player p : Bukkit.getServer().getOnlinePlayers()) {
+            Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.PLUGIN, () -> {
+                p.playSound(p.getLocation(), Sound.NOTE_PIANO, s1_volume, s1_pitch);
+                p.playSound(p.getLocation(), Sound.NOTE_BASS_GUITAR, s2_volume, s2_pitch);
+            }, delay);
+        }
     }
 }

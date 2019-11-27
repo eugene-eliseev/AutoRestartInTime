@@ -11,14 +11,16 @@ import java.util.TreeSet;
 
 public class Main extends JavaPlugin {
 
-    Config config = new Config(this);
+    static Main PLUGIN;
+    Config config = new Config();
     long nextRestartMillis = 0;
     TreeSet<Long> remindsMinutes = new TreeSet<>();
     TreeSet<Long> remindsSeconds = new TreeSet<>();
 
     public void onEnable() {
+        PLUGIN = this;
         config.init();
-        new AutoRestart(this).runTaskTimer(this, 0L, config.getUpdatePeriod());
+        new AutoRestart().runTaskTimer(this, 0L, config.getUpdatePeriod());
         nextRestartMillis = getNextRestartMillis();
         updateReminds();
     }

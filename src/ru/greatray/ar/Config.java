@@ -6,22 +6,17 @@ import java.util.List;
 
 class Config {
     private FileConfiguration configuration;
-    private Main plugin;
-
-    Config(Main plugin) {
-        this.plugin = plugin;
-    }
 
     void init() {
-        configuration = plugin.getConfig();
+        configuration = Main.PLUGIN.getConfig();
         configuration.options().copyDefaults(true);
-        plugin.saveConfig();
+        Main.PLUGIN.saveConfig();
     }
 
     void reload() {
-        plugin.reloadConfig();
-        plugin.saveConfig();
-        configuration = plugin.getConfig();
+        Main.PLUGIN.reloadConfig();
+        Main.PLUGIN.saveConfig();
+        configuration = Main.PLUGIN.getConfig();
     }
 
     List<String> getTimestamps() {

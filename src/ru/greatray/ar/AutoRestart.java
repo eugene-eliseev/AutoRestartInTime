@@ -7,19 +7,13 @@ import org.bukkit.ChatColor;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class AutoRestart extends BukkitRunnable {
-    private final Main plugin;
-
-    AutoRestart(Main plugin) {
-        this.plugin = plugin;
-    }
-
     public void run() {
         long now = Calendar.getInstance().getTimeInMillis();
-        if (now - plugin.nextRestartMillis > 0) {
-            plugin.sendBroadCast(plugin.config.getShutdownMessage());
+        if (now - Main.PLUGIN.nextRestartMillis > 0) {
+            Main.PLUGIN.sendBroadCast(Main.PLUGIN.config.getShutdownMessage());
 
-            Bukkit.getScheduler().callSyncMethod(plugin, () ->
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kickall " + ChatColor.translateAlternateColorCodes('&', plugin.config.getKickMessage()))
+            Bukkit.getScheduler().callSyncMethod(Main.PLUGIN, () ->
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "kickall " + ChatColor.translateAlternateColorCodes('&', Main.PLUGIN.config.getKickMessage()))
             );
 
             long timeout = System.currentTimeMillis() + 5000;
@@ -30,22 +24,24 @@ public class AutoRestart extends BukkitRunnable {
                 }
             }
 
-            plugin.getServer().shutdown();
+            Bukkit.shutdown();
         } else {
-            while (plugin.remindsMinutes.size() > 0) {
-                long remind = plugin.remindsMinutes.first();
+            while (Main.PLUGIN.remindsMinutes.size() > 0) {
+                long remind = Main.PLUGIN.remindsMinutes.first();
                 if (now - remind > 0) {
-                    plugin.sendBroadCast(Utils.getRemindMinutesMessageFormatted(plugin.nextRestartMillis - now, plugin.config.getRemindMinutesMessage()));
-                    plugin.remindsMinutes.remove(remind);
+                    Main.PLUGIN.sendBroadCast(Utils.getRemindMinutesMessageFormatted(Main.PLUGIN.nextRestartMillis - now, Main.PLUGIN.config.getRemindMinutesMessage()));
+                    Main.PLUGIN.remindsMinutes.remove(remind);
+                    Utils.plingMinute(Main.PLUGIN.remindsMinutes.size());
                 } else {
                     break;
                 }
             }
-            while (plugin.remindsSeconds.size() > 0) {
-                long remind = plugin.remindsSeconds.first();
+            while (Main.PLUGIN.remindsSeconds.size() > 0) {
+                long remind = Main.PLUGIN.remindsSeconds.first();
                 if (now - remind > 0) {
-                    plugin.sendBroadCast(Utils.getRemindSecondsMessageFormatted(plugin.nextRestartMillis - now, plugin.config.getRemindSecondsMessage()));
-                    plugin.remindsSeconds.remove(remind);
+                    Main.PLUGIN.sendBroadCast(Utils.getRemindSecondsMessageFormatted(Main.PLUGIN.nextRestartMillis - now, Main.PLUGIN.config.getRemindSecondsMessage()));
+                    Main.PLUGIN.remindsSeconds.remove(remind);
+                    Utils.plingSecond(Main.PLUGIN.remindsSeconds.size());
                 } else {
                     break;
                 }
