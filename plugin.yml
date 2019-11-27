@@ -1,0 +1,6 @@
+name: AutoRestartInTime
+main: ru.greatray.ar.Main
+version: 1.0
+author: LordBekket
+commands:
+  ar:

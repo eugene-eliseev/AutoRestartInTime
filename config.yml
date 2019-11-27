@@ -1,0 +1,45 @@
+## Main configuration values
+main:
+    ## Set the timestamp in 24 hour time format HH:MM
+    timestamp:
+        - '0:00'
+        - '6:00'
+        - '12:00'
+        - '18:00'
+    ## Server wide prefix for all chat broadcasts
+    prefix: '&c[&bAutoRestart&c] &a'
+    ## Client restart message in game chat
+    kick_message: '&aСервер перезапущен! Войти на сервер можно будет через минуту.'
+    ## Check time period
+    update_ticks: 5
+    messages:
+        ## %m - minutes
+        minutes:
+            - '&aСервер будет перезапущен через %m минут(ы)!'
+        ## %s - seconds
+        seconds:
+            - '&cСервер будет перезапущен через %s секунд(ы)!'
+        ## %h - hours, %m - minutes, %s - seconds
+        time:
+            - '&aЗапланированный рестарт через &b%h&a часов &b%m&a минут &b%s&a секунд!'
+        ## Reload plugin message
+        reload:
+            - '&aПлагин перезагружен!'
+        ## Client restart message in game chat
+        shutdown:
+            - '&cПерезапуск...'
+    reminder:
+        ## minutes before restart
+        minutes:
+            - 15
+            - 10
+            - 5
+            - 2
+            - 1
+        ## seconds before restart
+        seconds:
+            - 5
+            - 4
+            - 3
+            - 2
+            - 1
