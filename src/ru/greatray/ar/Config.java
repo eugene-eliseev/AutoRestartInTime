@@ -2,7 +2,6 @@ package ru.greatray.ar;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.util.Calendar;
 import java.util.List;
 
 class Config {
@@ -22,6 +21,7 @@ class Config {
     void reload() {
         plugin.reloadConfig();
         plugin.saveConfig();
+        configuration = plugin.getConfig();
     }
 
     List<String> getTimestamps() {
@@ -57,7 +57,7 @@ class Config {
     }
 
     String getRemindSecondsMessage() {
-        return configuration.getString("main.messages.seconds", "Restart in %m seconds!");
+        return configuration.getString("main.messages.seconds", "Restart in %s seconds!");
     }
 
     String getRestartTimeMessage() {

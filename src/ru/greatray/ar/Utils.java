@@ -2,14 +2,14 @@ package ru.greatray.ar;
 
 import java.util.Calendar;
 
-public class Utils {
+class Utils {
 
     static String getRemindMinutesMessageFormatted(long millis, String msg) {
         return msg.replaceAll("%m", String.valueOf(Math.round(millis / 60000.0D)));
     }
 
     static String getRemindSecondsMessageFormatted(long millis, String msg) {
-        return msg.replaceAll("%m", String.valueOf(Math.round(millis / 1000.0D)));
+        return msg.replaceAll("%s", String.valueOf(Math.round(millis / 1000.0D)));
     }
 
     static String getRestartTimeMessageFormatted(long time, String msg) {
@@ -18,7 +18,7 @@ public class Utils {
         restart = restart % 3600;
         long minutes = restart / 60;
         restart = restart % 60;
-        long seconds = restart / 60;
+        long seconds = restart;
         return msg.replaceAll("%h", String.valueOf(hours)).replaceAll("%m", String.valueOf(minutes)).replaceAll("%s", String.valueOf(seconds));
     }
 

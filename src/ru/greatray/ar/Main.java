@@ -53,7 +53,7 @@ public class Main extends JavaPlugin {
                 sendHelpMessage(sender, "Available commands:");
                 sendHelpMessage(sender, "/ar - check time before restart");
                 sendHelpMessage(sender, "/ar reload - plugin reloading");
-                sendHelpMessage(sender, "/ar set [N1 H] [N2 M] [N3 S] - set restart in format in N1 hours, N2 minutes, N3 seconds");
+                sendHelpMessage(sender, "/ar set [N1 H] [N2 M] [N3 S] - set restart in N1 hours, N2 minutes, N3 seconds");
             }
         }
         return false;

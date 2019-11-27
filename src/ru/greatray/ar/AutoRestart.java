@@ -9,7 +9,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class AutoRestart extends BukkitRunnable {
     private final Main plugin;
 
-    public AutoRestart(Main plugin) {
+    AutoRestart(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -35,18 +35,18 @@ public class AutoRestart extends BukkitRunnable {
             while (plugin.remindsMinutes.size() > 0) {
                 long remind = plugin.remindsMinutes.first();
                 if (now - remind > 0) {
-                    plugin.sendBroadCast(Utils.getRemindMinutesMessageFormatted(remind, plugin.config.getRemindMinutesMessage()));
+                    plugin.sendBroadCast(Utils.getRemindMinutesMessageFormatted(plugin.nextRestartMillis - now, plugin.config.getRemindMinutesMessage()));
                     plugin.remindsMinutes.remove(remind);
-                }else{
+                } else {
                     break;
                 }
             }
             while (plugin.remindsSeconds.size() > 0) {
                 long remind = plugin.remindsSeconds.first();
                 if (now - remind > 0) {
-                    plugin.sendBroadCast(Utils.getRemindSecondsMessageFormatted(remind, plugin.config.getRemindSecondsMessage()));
+                    plugin.sendBroadCast(Utils.getRemindSecondsMessageFormatted(plugin.nextRestartMillis - now, plugin.config.getRemindSecondsMessage()));
                     plugin.remindsSeconds.remove(remind);
-                }else{
+                } else {
                     break;
                 }
             }

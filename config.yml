@@ -14,20 +14,15 @@ main:
     update_ticks: 5
     messages:
         ## %m - minutes
-        minutes:
-            - '&aСервер будет перезапущен через %m минут(ы)!'
+        minutes: '&aСервер будет перезапущен через %m минут(ы)!'
         ## %s - seconds
-        seconds:
-            - '&cСервер будет перезапущен через %s секунд(ы)!'
+        seconds: '&cСервер будет перезапущен через %s секунд(ы)!'
         ## %h - hours, %m - minutes, %s - seconds
-        time:
-            - '&aЗапланированный рестарт через &b%h&a часов &b%m&a минут &b%s&a секунд!'
+        time: '&aЗапланированный рестарт через &b%h&a часов &b%m&a минут &b%s&a секунд!'
         ## Reload plugin message
-        reload:
-            - '&aПлагин перезагружен!'
+        reload: '&aПлагин перезагружен!'
         ## Client restart message in game chat
-        shutdown:
-            - '&cПерезапуск...'
+        shutdown: '&cПерезапуск...'
     reminder:
         ## minutes before restart
         minutes:
@@ -38,6 +33,7 @@ main:
             - 1
         ## seconds before restart
         seconds:
+            - 10
             - 5
             - 4
             - 3
